@@ -59,15 +59,16 @@ while True:
         length, _, img = detector.findDistance(lmList[8], lmList[12], img)
         # print(length)
         x, y = lmList[8]
-        if(length < 50):
-            for count, button in enumerate(buttons):
-                if(button.onClickListener(x, y)) and delay_counter == 0:
-                    entered_eqn = b_values[int(count % 4)][int(count / 4)]
-                    if(entered_eqn == "="):
-                        eqn = str("{:.2f}".format(eval(eqn)))
-                    else:
-                        eqn += entered_eqn
-                    delay_counter = 1
+        if(length < 45):
+            if len(eqn) < 15:
+                for count, button in enumerate(buttons):
+                    if(button.onClickListener(x, y)) and delay_counter == 0:
+                        entered_eqn = b_values[int(count % 4)][int(count / 4)]
+                        if(entered_eqn == "="):
+                            eqn = str("{:.2f}".format(eval(eqn)))
+                        else:
+                            eqn += entered_eqn
+                        delay_counter = 1
     if(delay_counter != 0):
         delay_counter += 1
         if(delay_counter > 10):
